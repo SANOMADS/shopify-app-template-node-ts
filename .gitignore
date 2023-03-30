@@ -1,6 +1,7 @@
 # Environment Configuration
 .env
 .env.*
+!.env.example
 
 # Dependency directory
 node_modules
@@ -26,3 +27,8 @@ extensions/*/build
 
 # Node library SQLite database
 web/database.sqlite
+
+# lock files
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
