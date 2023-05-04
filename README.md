@@ -4,6 +4,26 @@ This is a template for building a [Shopify app](https://shopify.dev/docs/apps/ge
 
 Rather than cloning this repo, you can use your preferred package manager and the Shopify CLI with [these steps](#installing-the-template).
 
+## Setup
+
+1. Clone the frontend and backend repos
+```sh
+npx degit SANOMADS/shopify-app-template-node-ts && npx degit SANOMADS/shopify-frontend-template-react-ts shopify-app-ts/web/frontend
+```
+2. Install node packages
+```sh
+cd shopify-app-ts && npm install
+```
+3. Delete .gitmodules file
+4. Run database migrations
+```sh
+cd web/backend && npx prisma migrate dev
+``` 
+5. Go to app's root directory and then run the app
+```sh
+cd shopify-app-ts && npm dev
+```
+
 ## Benefits
 
 Shopify apps are built on a variety of Shopify tools to create a great merchant experience. The [create an app](https://shopify.dev/docs/apps/getting-started/create) tutorial in our developer documentation will guide you through creating a Shopify app using this template.

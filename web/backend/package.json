@@ -3,9 +3,18 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "debug": "node --inspect-brk index.js",
+    "debug": "node --inspect-brk index.ts",
     "dev": "cross-env NODE_ENV=development nodemon --experimental-specifier-resolution=node index.ts",
-    "serve": "cross-env NODE_ENV=production node index.js"
+    "build": "tsc --skipLibCheck",
+    "prepare": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate deploy",
+    "serve": "cross-env NODE_ENV=production node --experimental-specifier-resolution=node dist/index.js",
+    "start": "npm run prisma:migrate && npm run serve",
+    "test": "vitest --reporter=verbose",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix",
+    "pretty": "prettier --write ."
   },
   "type": "module",
   "engines": {
