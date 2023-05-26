@@ -43,7 +43,7 @@ export default function updateShopDataMiddleware(app: Express) {
     await updateShopData(app, session);
 
     return next();
-  }
+  };
 }
 
 async function updateShopData(app: Express, session: Session) {
@@ -52,7 +52,7 @@ async function updateShopData(app: Express, session: Session) {
 
   let fetchShopData = true;
 
-  if(!existingShop) {
+  if (!existingShop) {
     await shops.createShop({
       shop: session.shop,
       scopes: session.scope,
@@ -107,7 +107,7 @@ async function updateShopData(app: Express, session: Session) {
     }
   }
 
-  if(fetchShopData) {
+  if (fetchShopData) {
     try {
       const client = new shopify.api.clients.Graphql({ session });
 
@@ -135,7 +135,7 @@ async function updateShopData(app: Express, session: Session) {
           },
         });
       }
-    } catch(error) {
+    } catch (error) {
       console.log("Failed to fetch shop data:", error);
       console.log("Error Response:", (error as HttpResponseError).response);
     }
