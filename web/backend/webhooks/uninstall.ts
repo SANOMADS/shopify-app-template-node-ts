@@ -50,7 +50,7 @@ async function uninstall(shop: string) {
 }
 
 export default async function addUninstallWebhookHandler() {
-  await shopify.api.webhooks.addHandlers({
+  shopify.api.webhooks.addHandlers({
     APP_UNINSTALLED: {
       deliveryMethod: DeliveryMethod.Http,
       callbackUrl: "/api/webhooks",
