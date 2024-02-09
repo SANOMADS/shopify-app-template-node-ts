@@ -1,17 +1,17 @@
 import type { WebhookHandlersParam } from "@shopify/shopify-app-express";
 import { DeliveryMethod } from "@shopify/shopify-api";
 
-const GDPRWebhookHandlers: WebhookHandlersParam = {
+const PrivacyWebhookHandlers: WebhookHandlersParam = {
   /**
    * Customers can request their data from a store owner. When this happens,
-   * Shopify invokes this webhook.
+   * Shopify invokes this privacy webhook.
    *
    * https://shopify.dev/docs/apps/webhooks/configuration/mandatory-webhooks#customers-data_request
    */
   CUSTOMERS_DATA_REQUEST: {
     deliveryMethod: DeliveryMethod.Http,
     callbackUrl: "/api/webhooks",
-    callback: async (topic: string, shop: string, body: string, webhookId: string) => {
+    callback: async (topic, shop, body, webhookId) => {
       const payload = JSON.parse(body);
       // Payload has the following shape:
       // {
@@ -36,14 +36,14 @@ const GDPRWebhookHandlers: WebhookHandlersParam = {
 
   /**
    * Store owners can request that data is deleted on behalf of a customer. When
-   * this happens, Shopify invokes this webhook.
+   * this happens, Shopify invokes this privacy webhook.
    *
    * https://shopify.dev/docs/apps/webhooks/configuration/mandatory-webhooks#customers-redact
    */
   CUSTOMERS_REDACT: {
     deliveryMethod: DeliveryMethod.Http,
     callbackUrl: "/api/webhooks",
-    callback: async (topic: string, shop: string, body: string, webhookId: string) => {
+    callback: async (topic, shop, body, webhookId) => {
       const payload = JSON.parse(body);
       // Payload has the following shape:
       // {
@@ -65,14 +65,14 @@ const GDPRWebhookHandlers: WebhookHandlersParam = {
 
   /**
    * 48 hours after a store owner uninstalls your app, Shopify invokes this
-   * webhook.
+   * privacy webhook.
    *
    * https://shopify.dev/docs/apps/webhooks/configuration/mandatory-webhooks#shop-redact
    */
   SHOP_REDACT: {
     deliveryMethod: DeliveryMethod.Http,
     callbackUrl: "/api/webhooks",
-    callback: async (topic: string, shop: string, body: string, webhookId: string) => {
+    callback: async (topic, shop, body, webhookId) => {
       const payload = JSON.parse(body);
       // Payload has the following shape:
       // {
@@ -83,4 +83,4 @@ const GDPRWebhookHandlers: WebhookHandlersParam = {
   },
 };
 
-export default GDPRWebhookHandlers;
+export default PrivacyWebhookHandlers;

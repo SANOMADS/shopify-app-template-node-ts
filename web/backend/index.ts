@@ -7,7 +7,7 @@ import serveStatic from "serve-static";
 import shopify from "./shopify";
 
 // Import Webhooks
-import GDPRWebhookHandlers from "./webhooks/gdpr";
+import PrivacyWebhookHandlers from "./webhooks/privacy";
 import addUninstallWebhookHandler from "./webhooks/uninstall";
 
 // Import Routes
@@ -33,7 +33,7 @@ app.get(
 // Set up Shopify webhooks
 app.post(
   shopify.config.webhooks.path,
-  shopify.processWebhooks({ webhookHandlers: GDPRWebhookHandlers })
+  shopify.processWebhooks({ webhookHandlers: PrivacyWebhookHandlers })
 );
 await addUninstallWebhookHandler();
 
@@ -49,6 +49,7 @@ app.use(express.json());
 // Authenticated routes
 mountRoutes(app);
 
+app.use(shopify.cspHeaders());
 app.use(serveStatic(STATIC_PATH, { index: false }));
 
 app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {

@@ -1,6 +1,6 @@
 import { BillingInterval, LATEST_API_VERSION } from "@shopify/shopify-api";
 import { shopifyApp } from "@shopify/shopify-app-express";
-import { restResources } from "@shopify/shopify-api/rest/admin/2023-01";
+import { restResources } from "@shopify/shopify-api/rest/admin/2024-01";
 
 import sessions from "./prisma/db/sessions";
 
