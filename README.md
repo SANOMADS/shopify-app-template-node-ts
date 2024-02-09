@@ -8,7 +8,7 @@ Rather than cloning this repo, you can use your preferred package manager and th
 
 1. Clone the frontend and backend repos
 ```sh
-npx degit SANOMADS/shopify-app-template-node-ts && npx degit SANOMADS/shopify-frontend-template-react-ts shopify-app-ts/web/frontend
+npx degit SANOMADS/shopify-app-template-node-ts shopify-app-ts && npx degit SANOMADS/shopify-frontend-template-react-ts shopify-app-ts/web/frontend
 ```
 2. Install node packages
 ```sh
